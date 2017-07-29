@@ -1,0 +1,39 @@
+gfw_list = "./gfw_domain_list.txt"
+china_list = "./china_domain_list.txt"
+china_ip_list = "./china_ip_list.txt"
+
+###########
+# DNS 服务器
+###########
+[dns]
+listen = ":53"  # 将要开启的本地 DNS 服务器的绑定地址
+
+# 国内 DNS 服务器信息
+[dns.obedient]
+nameserver = "119.29.29.29:53"  # DNS 服务器地址
+net = "udp"  # 可选值: udp | tcp | tcp-tls
+
+# 国外 DNS 服务器信息
+# - enable_dns_over_https == true 时：
+#       `nameserver` 会默认为 https://dns.google.com/resolve?
+#       `proxy` 可以是 http, socks5 等代理
+# - enable_dns_over_https == false 时：
+#       `proxy` 不能为 http 代理
+#
+# 开启 enable_dns_over_https 后 DNS 查询速度会较慢
+[dns.abroad]
+enable_dns_over_https = false
+
+nameserver = "8.8.8.8:53"  # DNS 服务器地址
+proxy = "socks5://127.0.0.1:1080"
+
+###########
+# 代理服务器
+###########
+[proxy]
+listen = ":1480"  # 将要开启的本地代理服务器的绑定地址
+
+proxy_server = "socks5://127.0.0.1:1080"  # 已有的 http 或 socks5 代理，非中国大陆网站流量将会被转发到此代理上
+proxy_server_external_ip = ""  # 代理服务器的公网 IP
+                               # 是为可选项，用于提升代理服务器的 DNS 查询质量
+                               # 通过代理上网并访问 `https://tools.keycdn.com/geo` 之类的网站可看到公网 IP

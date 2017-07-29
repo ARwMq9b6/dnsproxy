@@ -1,0 +1,56 @@
+sudo: required
+
+services: docker
+
+language: go
+
+env:
+  global:
+    - CRATE_NAME=dnsproxy
+    # the context of command `docker build <CONTEXT>`
+    - DOCKER_BUILD_CONTEXT=https://raw.githubusercontent.com/ARwMq9b6/dnsproxy/master/cmd/dnsproxy/Dockerfile
+
+install: echo "skip install"
+
+matrix:
+  include:
+    - env:
+        - TARGETOS=windows
+        - TARGETARCH=386
+    - env:
+        - TARGETOS=windows
+        - TARGETARCH=amd64
+    - env:
+        - TARGETOS=linux
+        - TARGETARCH=386
+    - env:
+        - TARGETOS=linux
+        - TARGETARCH=amd64
+    - env:
+        - TARGETOS=darwin
+        - TARGETARCH=386
+    - env:
+        - TARGETOS=darwin
+        - TARGETARCH=amd64
+
+script: sh ci/script.sh
+
+deploy:
+  provider: releases
+  api_key:
+    secure: "RNvewcyMj7UwCgWbZlx8IP6ZgVIJF/KGEYncgqgrteduLFgJTWmLcgjXAjN+tex8TElCOXvcMuNYQaC7KeZIhENSa7XckilemlAaVUrspQ0Vj/NyrsRLqJJCeiq1OwHQGQX8uAq8MNtijDv03W70ut+C5pAPbJCnH7L3xG3OJeZm31DuOJk7P/x1vk9lD5L4n0RPCg/R2FK/WVbnvVq78RBVTpoRsmrHplKD2USiCxYOCh25ADa9cwWAeZXNY10HvfvALjVKF2bXML5GdwHAbZZ88b5o3p8+WrYBVJW05JheVra54KxHLmqYJwcFHPxjpU7my4I0/EB0fOuBmtFpwVl0wbtYNnt+pDkUQ/C6bVJM7Bs2M9Lqlzp66eYn13nRUNkqWTdh8H/lCvgRL9JBnYIoIMue/gEfd34TuTXN6sWh4CHB6+eP8lWmHKWgJ+Kkv0mKCc4GnFLGGjsutTgKl9Ao57kg7QL/sgvWQERKEJzNZQjcnYoZHp3beL6I2iTbuBavZJl8H5Qx9VNaXSJgz8mvynbO8bXZ3vJpoLRQG3kQT7/Ty1OpNTjWg6jddoklwmEM1kpjmZcH/stOtXvJv2pNA6hyKZWUdvnMplCCobPI1l8gQVUA//i5oifjsme3M0461gO7dVww75EVKi7URpyFl08hSltW/cTspHBTDcc="
+  file_glob: true
+  file: $CRATE_NAME-$TRAVIS_TAG-$TARGETOS-$TARGETARCH.*
+  skip_cleanup: true
+  on:
+    tags: true
+
+branches:
+  only:
+    # release tags
+    - /^v\d+\.\d+\.\d+.*$/
+    - master
+
+notifications:
+  email:
+    on_success: never

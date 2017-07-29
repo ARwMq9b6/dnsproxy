@@ -1,0 +1,9 @@
+[submodule "cmd/dnsproxy/gfwlist"]
+	path = cmd/dnsproxy/gfwlist
+	url = https://github.com/gfwlist/gfwlist
+[submodule "cmd/dnsproxy/china_ip_list"]
+	path = cmd/dnsproxy/china_ip_list
+	url = https://github.com/17mon/china_ip_list.git
+[submodule "cmd/dnsproxy/dnsmasq-china-list"]
+	path = cmd/dnsproxy/dnsmasq-china-list
+	url = https://github.com/felixonmars/dnsmasq-china-list.git

@@ -1,0 +1,6 @@
+.idea/
+#vendor/
+target/
+
+#.vendor
+cmd/dnsproxy/.generate
