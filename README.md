@@ -1,5 +1,8 @@
 # dnsproxy
 
+
+[![Travis status](https://api.travis-ci.org/ARwMq9b6/dnsproxy.svg?branch=master)](https://travis-ci.org/ARwMq9b6/dnsproxy)
+
 DNS 服务器 + 代理服务器
 
 作为 DNS 服务器使用时
