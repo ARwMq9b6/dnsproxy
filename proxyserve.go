@@ -243,7 +243,7 @@ func (r *socks5Request) setRedirect(ip net.IP) {
 	if ip.To4() != nil {
 		addrType = AddrIPv4
 	} else {
-		addrType = AddrIPv4
+		addrType = AddrIPv6
 	}
 	r.req.Addr.Type = addrType
 	r.req.Addr.Host = ip.String()
