@@ -33,7 +33,7 @@ $ docker run -v $PWD/target:/target dnsproxy
 ### 本地编译
 
 ```
-$ go get -d -u github.com/ARwMq9b6/dnsproxy
+$ go get -u github.com/ARwMq9b6/dnsproxy
 $ cd $GOPATH/src/github.com/ARwMq9b6/dnsproxy/cmd/dnsproxy
 $ make
 ```
