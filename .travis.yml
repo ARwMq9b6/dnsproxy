@@ -10,7 +10,7 @@ env:
     # the context of command `docker build <CONTEXT>`
     - DOCKER_BUILD_CONTEXT=https://raw.githubusercontent.com/ARwMq9b6/dnsproxy/master/cmd/dnsproxy/Dockerfile
 
-install: echo "skip install"
+install: echo "skip installation"
 
 matrix:
   include:
