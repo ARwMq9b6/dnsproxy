@@ -90,7 +90,7 @@ func _main() error {
 	dnsproxy.InitGlobals(ipc, domainc, dm, ipMatchCHN,
 		subnetLocalIP, subnetProxyIP, dtLocal, dtAbroad)
 
-	// --- listen and server
+	// --- listen and serve
 	e := make(chan error)
 	go func() {
 		proxy := gost.NewProxyChain()
